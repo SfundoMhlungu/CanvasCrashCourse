@@ -62,23 +62,86 @@ var c = canvas.getContext("2d");
 
 
 
-c.beginPath()
-c.arc(300, 300, 30, 0, Math.PI * 2, false);
-c.stroke();
+class circle_ {
+    x = Math.random() * innerWidth;
+    y = Math.random() * innerHeight;
+    dx = (Math.random() - 0.5) * 8;
+    dy = (Math.random() - 0.5) * 8;
+    radius = 30;
 
-x = 200;
-// creating a loop
-function animate() {
-    requestAnimationFrame(animate);
-    c.clearRect(0, 0, window.innerWidth, window.innerHeight);
-    c.beginPath()
-    c.arc(x, 300, 30, 0, Math.PI * 2, false);
-    c.strokeStyle = "blue";
-    c.stroke();
 
-    x += 1;
+
+
+    draw() {
+        c.beginPath()
+        c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+        c.strokeStyle = "blue";
+        c.stroke();
+    }
+
+    move() {
+
+
+        if (this.x + this.radius > innerWidth || this.x - this.radius < 0) {
+            this.dx = -this.dx
+        }
+        if (this.y + this.radius > innerHeight || this.y - this.radius < 0) {
+            this.dy = -this.dy
+        }
+
+
+
+
+        this.x += this.dx;
+        this.y += this.dy;
+
+        this.draw();
+    }
+
+
 }
 
 
 
+
+// c.beginPath()
+// c.arc(300, 300, 30, 0, Math.PI * 2, false);
+// c.stroke();
+
+x = Math.random() * innerWidth;
+var y = Math.random() * innerHeight;
+var dx = (Math.random() - 0.5) * 8;
+var dy = (Math.random() - 0.5) * 8;
+var radius = 30;
+
+
+arr = [];
+for (let i = 0; i < 10; i++) {
+
+    arr[i] = new circle_();
+}
+// creating a loop
+
+
+
+function animate() {
+    requestAnimationFrame(animate);
+    c.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+    for (let i = 0; i < arr.length; i++) {
+        arr[i].move()
+    }
+
+
+
+
+
+}
+
 // animate();
+// console.log(arr[0].move())
+
+
+
+
+// TODO ,: change circle to object, create multiple circles, with different vals
