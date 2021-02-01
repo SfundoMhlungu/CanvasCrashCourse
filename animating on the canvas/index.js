@@ -63,11 +63,12 @@ var c = canvas.getContext("2d");
 
 
 class circle_ {
-    x = Math.random() * innerWidth;
-    y = Math.random() * innerHeight;
+    radius = 30;
+    x = Math.random() * (innerWidth - radius * 2) + radius;
+    y = Math.random() * (innerHeight - radius * 2) + radius;
     dx = (Math.random() - 0.5) * 8;
     dy = (Math.random() - 0.5) * 8;
-    radius = 30;
+
 
 
 
@@ -116,7 +117,7 @@ var radius = 30;
 
 
 arr = [];
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 20; i++) {
 
     arr[i] = new circle_();
 }
@@ -138,7 +139,7 @@ function animate() {
 
 }
 
-// animate();
+animate();
 // console.log(arr[0].move())
 
 
